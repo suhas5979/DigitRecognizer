@@ -14,8 +14,7 @@ import java.nio.channels.FileChannel
 import java.util.*
 
 class Classifier(activity: Activity) {
-    private val options =
-        Interpreter.Options()
+    private val options = Interpreter.Options()
     private val mInterpreter: Interpreter
     private val mImageData: ByteBuffer?
     private val mImagePixels =
@@ -31,7 +30,7 @@ class Classifier(activity: Activity) {
         val timeCost = endTime - startTime
         Log.v(
             LOG_TAG,
-            "classify(): result = " + Arrays.toString(mResult[0])
+            "classify(): result = " + mResult[0].contentToString()
                     + ", timeCost = " + timeCost
         )
         return Result(mResult[0], timeCost)
@@ -39,10 +38,8 @@ class Classifier(activity: Activity) {
 
     @Throws(IOException::class)
     private fun loadModelFile(activity: Activity): MappedByteBuffer {
-        val fileDescriptor =
-            activity.assets.openFd(MODEL_NAME)
-        val inputStream =
-            FileInputStream(fileDescriptor.fileDescriptor)
+        val fileDescriptor = activity.assets.openFd(MODEL_NAME)
+        val inputStream = FileInputStream(fileDescriptor.fileDescriptor)
         val fileChannel = inputStream.channel
         val startOffset = fileDescriptor.startOffset
         val declaredLength = fileDescriptor.declaredLength

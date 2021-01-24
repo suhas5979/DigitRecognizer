@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DigitRecognizer</string>
+    <string name="detect">Detect</string>
+    <string name="clear">Clear</string>
 </resources>

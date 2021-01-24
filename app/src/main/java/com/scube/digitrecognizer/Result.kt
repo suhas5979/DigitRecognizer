@@ -1,12 +1,12 @@
 package com.scube.digitrecognizer
 
-class Result(probs: FloatArray, timeCost: Long) {
+class Result(probes: FloatArray, timeCost: Long) {
     val number: Int
     val probability: Float
     val timeCost: Long
 
     companion object {
-        private fun argmax(probs: FloatArray): Int {
+        private fun argMax(probs: FloatArray): Int {
             var maxIdx = -1
             var maxProb = 0.0f
             for (i in probs.indices) {
@@ -20,8 +20,8 @@ class Result(probs: FloatArray, timeCost: Long) {
     }
 
     init {
-        number = com.scube.digitrecognizer.Result.Companion.argmax(probs)
-        probability = probs[number]
+        number = argMax(probes)
+        probability = probes[number]
         this.timeCost = timeCost
     }
 }
