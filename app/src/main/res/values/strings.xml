@@ -2,4 +2,7 @@
     <string name="app_name">DigitRecognizer</string>
     <string name="detect">Detect</string>
     <string name="clear">Clear</string>
+    <string name="prediction">Prediction</string>
+    <string name="probability">Probability</string>
+    <string name="timeCost">Time Cost</string>
 </resources>
