@@ -11,7 +11,6 @@ import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
-import java.util.*
 
 class Classifier(activity: Activity) {
     private val options = Interpreter.Options()
@@ -28,11 +27,6 @@ class Classifier(activity: Activity) {
         mInterpreter.run(mImageData, mResult)
         val endTime = SystemClock.uptimeMillis()
         val timeCost = endTime - startTime
-        Log.v(
-            LOG_TAG,
-            "classify(): result = " + mResult[0].contentToString()
-                    + ", timeCost = " + timeCost
-        )
         return Result(mResult[0], timeCost)
     }
 
@@ -69,7 +63,6 @@ class Classifier(activity: Activity) {
     }
 
     companion object {
-        private val LOG_TAG = Classifier::class.java.simpleName
         private const val MODEL_NAME = "digit.tflite"
         private const val BATCH_SIZE = 1
         const val IMG_HEIGHT = 28
