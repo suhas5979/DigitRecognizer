@@ -2,8 +2,6 @@ package com.scube.digitrecognizer
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
-import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -27,26 +25,28 @@ class MainActivity : AppCompatActivity() {
             val bitmap =
                 fpv_paint.exportToBitmap(Classifier.IMG_WIDTH, Classifier.IMG_HEIGHT)
             val res = mClassifier!!.classify(bitmap)
-            setResultVisible()
-            probability.text = "${resources.getString(R.string.probability)}: ${res.probability *100}%"
-            prediction.text = "${resources.getString(R.string.prediction)}: ${res.number}"
-            timecost.text = "${resources.getString(R.string.timeCost)}:${ res.timeCost}"
+            setResultVisible(res)
+
         }
         btn_clear.setOnClickListener {
 
             fpv_paint.clear()
-            prediction.text = ""
-            probability.text = ""
-            timecost.text = ""
+
             setResultInvisible()
         }
     }
-    private fun setResultVisible(){
+    private fun setResultVisible(res: Result) {
         prediction.visibility = View.VISIBLE
         probability.visibility = View.VISIBLE
         timecost.visibility = View.VISIBLE
+        probability.text = "${resources.getString(R.string.probability)}: ${res.probability *100}%"
+        prediction.text = "${resources.getString(R.string.prediction)}: ${res.number}"
+        timecost.text = "${resources.getString(R.string.timeCost)}:${ res.timeCost}"
     }
     private fun setResultInvisible(){
+        prediction.text = ""
+        probability.text = ""
+        timecost.text = ""
         prediction.visibility = View.INVISIBLE
         probability.visibility = View.INVISIBLE
         timecost.visibility = View.INVISIBLE
